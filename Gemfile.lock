@@ -58,6 +58,10 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (7.2.3)
       execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap (4.0.0.beta2.1)
@@ -72,6 +76,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -80,6 +85,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.3)
     daemons (1.2.5)
     delayed_job (4.1.4)
@@ -107,6 +113,8 @@ GEM
     erubi (1.7.0)
     excon (0.60.0)
     execjs (2.7.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     ffi (1.9.18)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -269,6 +277,10 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.4.10)
+      railties
+      sprockets-rails
+    graphql (1.7.14)
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
@@ -343,9 +355,15 @@ GEM
       activerecord (>= 3.0)
     popper_js (1.12.9)
     powerpack (0.1.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.11.0)
     rack (2.0.4)
+    rack-cors (1.0.2)
     rack-protection (2.0.1)
+      rack
+    rack-proxy (0.6.4)
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -397,6 +415,12 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
+    react-rails (2.4.4)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -460,7 +484,7 @@ GEM
     turbolinks-source (5.0.3)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (4.0.2)
+    uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -473,6 +497,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (3.4.3)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -487,14 +515,18 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta2)
   bundler-audit
   carrierwave
+  coffee-rails (~> 4.2)
   daemons
   delayed_job_active_record
   delayed_job_web (>= 1.2.10)
   devise (= 4.4.0)
   email_prefixer
   email_validator
+  faker (~> 1.8)
   fog
   font-awesome-sass (~> 4.3.0)
+  graphiql-rails (~> 1.4)
+  graphql (~> 1.7)
   honeybadger (~> 3.1)
   jbuilder (>= 2.2.13)
   jquery-growl-rails
@@ -505,11 +537,14 @@ DEPENDENCIES
   minitest-ci
   minitest-reporters
   pg
+  pry (~> 0.11.3)
   puma (~> 3.2)
+  rack-cors
   rack-protection (>= 2.0)
   rack-timeout
   rails (~> 5.1)
   rails_12factor
+  react-rails (~> 2.4)
   rubocop
   ruby_audit
   sass-rails (>= 5.0.3)
@@ -520,8 +555,9 @@ DEPENDENCIES
   spring
   sprockets-rails
   turbolinks (~> 5)
-  uglifier (>= 2.7.1)
+  uglifier (~> 4.1)
   web-console (~> 3.0)
+  webpacker (~> 3.4)
 
 RUBY VERSION
    ruby 2.5.1p57

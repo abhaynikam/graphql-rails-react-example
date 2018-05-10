@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
-Wheel::Application.routes.draw do
+GraphqlRailsReactExample::Application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/gi", graphql_path: "/graphql"
+  end
+
+  post "/graphql", to: "graphql#execute"
+
+  mount ActionCable.server => '/cable'
   # Setting path_prefix makes sure that devise routes do not conflict
   # with users resources routes.
   #
@@ -42,8 +49,6 @@ Wheel::Application.routes.draw do
   end
 
   get "pages/about"
-  get "pages/contact_us"
-  resources :contacts, only: [:create]
 
   authenticated :user do
     get "/pages" => "pages#index", as: :pages
@@ -66,4 +71,8 @@ Wheel::Application.routes.draw do
   end
 
   root "home#index"
+
+  get "*path", to: "home#index", constraints: -> (request) do
+    !request.xhr? && request.format.html?
+  end
 end

@@ -13,4 +13,11 @@ module ApplicationHelper
       link_to text, path, options
     end
   end
+
+  def get_current_user_token
+    {
+      email: current_user.email,
+      token: current_user.authentication_token
+    }
+  end
 end

@@ -10,7 +10,7 @@ gem "rails", "~> 5.1"
 gem "jquery-rails"
 gem "sprockets-rails"
 gem "sass-rails", ">= 5.0.3"
-gem "uglifier", ">= 2.7.1"
+gem "uglifier", "~> 4.1"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"
@@ -93,7 +93,25 @@ gem "rack-timeout"
 # for displaying notifications
 gem "jquery-growl-rails"
 
+# for building APIs
+gem "graphql", "~> 1.7"
+
+# for browser based query interface
+gem "graphiql-rails", "~> 1.4"
+
+# for managing javascript modules.
+gem 'webpacker', '~> 3.4'
+
+# for helpers to render components in view or controllers.
+gem 'react-rails', '~> 2.4'
+
+gem 'rack-cors', :require => 'rack/cors'
+
+# For generating fake sample data
+gem 'faker', '~> 1.8'
+
 group :development do
+  gem "coffee-rails", "~> 4.2"
 
   # speeds up development by keeping your application running in the background
   gem "spring"
@@ -132,4 +150,7 @@ end
 group :development, :test do
   # For splitting tests across CircleCI containers
   gem "knapsack"
+
+  # For debugging the application.
+  gem 'pry', '~> 0.11.3'
 end

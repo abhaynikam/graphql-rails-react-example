@@ -40,6 +40,9 @@ task setup_sample_data: [:environment, :not_production] do
 
   create_user email: "sam@example.com"
 
+  populate_sample_authors
+  populate_sample_post_for_authors
+
   puts "sample data was added successfully"
 end
 
@@ -51,4 +54,26 @@ def create_user(options = {})
                       role: "super_admin" }
   attributes = user_attributes.merge options
   User.create! attributes
+end
+
+def populate_sample_authors
+  10.times do
+    Author.create!({
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      is_alive: Faker::Boolean.boolean,
+      birth_year: 1990
+    })
+  end
+end
+
+def populate_sample_post_for_authors
+  30.times do
+    Post.create!({
+      title: Faker::Lorem.sentence,
+      body: Faker::Lorem.paragraph(2),
+      author_id: Author.order("RANDOM()").first.id,
+      created_at: Faker::Date.between(2.year.ago, 1.year.ago)
+    })
+  end
 end

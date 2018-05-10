@@ -1,0 +1,154 @@
+.page-header {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0 -15px 35px -15px;
+  border-bottom: 1px solid #ededed;
+
+  .page-header-left {
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin: 0;
+      font-weight: 500;
+      display: inline-block;
+
+      .fa {
+        font-size: 13px;
+        vertical-align: middle;
+        margin: 0 10px;
+        color: #c1c1c1;
+      }
+    }
+
+    .header-left-info {
+      vertical-align: bottom;
+      margin-left: 15px;
+      background: #f5f5f5;
+      padding: 4px 10px;
+      border-radius: 3px;
+      color: #888;
+      font-size: 15px;
+      display: inline-block;
+    }
+  }
+
+  .page-header-right {
+    margin-left: auto;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+
+    .button-container {
+      margin-top: 0;
+    }
+
+    .week-navigation {
+      margin-left: 15px;
+    }
+
+    .dropdown {
+      .dropdown-toggle {
+        padding: 7px 12px !important;
+        font-size: 15px;
+        border: 1px solid #ddd;
+        color: #666;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.help-block {
+  font-size: 15px;
+  color: red;
+  margin-top: 10px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.pagination {
+  display: inline-block;
+  width: 100%;
+}
+
+.pagination li {
+  color: black;
+  float: left;
+  border: 1px solid #dfdfdf;
+  margin-left: 2px;
+  padding: 5px 2px;
+  cursor: pointer;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #007aff;
+  color: white;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.post-title {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.post-content {
+  color: #454545;
+  font-size: 18.5px;
+}
+
+.post-content p {
+  margin-bottom: 32px;
+  line-height: 32px;
+}
+
+.post-meta {
+  display: block;
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 40px;
+  margin: 10px auto 40px auto;
+  position: relative;
+  font-weight: 500;
+}
+
+.post-meta:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: #444;
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+
