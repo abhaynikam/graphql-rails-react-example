@@ -110,6 +110,9 @@ gem 'rack-cors', :require => 'rack/cors'
 # For generating fake sample data
 gem 'faker', '~> 1.8'
 
+# A query batching executor for the graphql gem
+gem 'graphql-batch', '~> 0.3.9'
+
 group :development do
   gem "coffee-rails", "~> 4.2"
 

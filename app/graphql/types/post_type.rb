@@ -8,7 +8,12 @@ Types::PostType = GraphQL::ObjectType.define do
   field :title, types.String
   field :body, types.String
   field :author, Types::AuthorType
-  field :comments, types[Types::CommentType]
+  field :comments, types[Types::CommentType] do
+
+    resolve -> (obj, _args, _ctx) {
+      RecordLoader.for(Comment).load(obj.comment_ids)
+    }
+  end
 
   field :created_at, types.String do
     description "Comment created at timestamp."
