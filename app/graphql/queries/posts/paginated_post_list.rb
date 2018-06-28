@@ -7,8 +7,9 @@ class Queries::Posts::PaginatedPostList < GraphQL::Function
 
   argument :limit, !types.Int
   argument :offset, !types.Int
+  argument :query, types.String, default_value: nil
 
   def call(_obj, args, _ctx)
-    Post.all.limit(args[:limit]).offset(args[:offset])
+    Post.filter_by_title(args[:query]).limit(args[:limit]).offset(args[:offset])
   end
 end

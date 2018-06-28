@@ -10,8 +10,8 @@ const FETCH_POSTS = gql`
 `;
 
 const PAGINATED_POST_LIST = gql`
-  query PaginatedPostList($limit: Int!, $offset: Int!) {
-    posts: paginated_post_list(limit: $limit, offset: $offset) {
+  query PaginatedPostList($limit: Int!, $offset: Int!, $query: String) {
+    posts: paginated_post_list(limit: $limit, offset: $offset, query: $query) {
       id
       title
     }
@@ -56,4 +56,14 @@ const FETCH_COMMENTS_FOR_POST = gql`
   }
 `;
 
-export { FETCH_POSTS, FETCH_POST, PAGINATED_POST_LIST, PAGINATION_METADATA, FETCH_COMMENTS_FOR_POST };
+const FETCH_TRAINING_DETAILS = gql`
+  query {
+    trainingDetails: training_details {
+      test_count
+      example_count
+    }
+  }
+`;
+
+
+export { FETCH_POSTS, FETCH_POST, PAGINATED_POST_LIST, PAGINATION_METADATA, FETCH_COMMENTS_FOR_POST, FETCH_TRAINING_DETAILS };

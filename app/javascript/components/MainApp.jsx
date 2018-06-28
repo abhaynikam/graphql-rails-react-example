@@ -14,6 +14,7 @@ import ActionCableLink from "graphql-ruby-client/subscriptions/ActionCableLink";
 import { HttpLink } from "apollo-link-http";
 import { ApolloLink, concat } from "apollo-link";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import TrainingDetails from "./Post/Training";
 
 const cable = ActionCable.createConsumer()
 
@@ -53,7 +54,7 @@ class MainApp extends React.Component {
             <Switch>
               <Route path="/" component={PostIndex} exact />
               <Route path="/posts/new" render={ routeProps => <NewPost {...routeProps} authorId={this.props.currentUserId} /> } exact />
-              <Route path="/posts/:id" render={ routeProps => <PostDetails {...routeProps} currentUserId={this.props.currentUserId} /> } exact />
+              <Route path="/posts/:id" render={ routeProps => <TrainingDetails {...routeProps} currentUserId={this.props.currentUserId} /> } exact />
               <Route path="/pages/contact_us" render={ routeProps => <ContactUs {...routeProps} currentUserId={this.props.currentUserId} /> } exact />
 
               <Route path="*" component={NoMatch} />

@@ -10,13 +10,15 @@ class PostIndex extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { offset: 0, limit: PER_PAGE, currentPage: 0 };
+    this.state = { offset: 0, limit: PER_PAGE, currentPage: 0, query: "" };
   }
 
   handlePageChange = (offset, currentPage) => this.setState({ offset, currentPage });
 
+  handlePostFilter = (query) => this.setState({ query });
+
   render() {
-    const { offset, limit, currentPage } = this.state;
+    const { offset, limit, currentPage, query } = this.state;
 
     return(
       <div>
@@ -25,8 +27,10 @@ class PostIndex extends Component {
           offset={offset}
           limit={limit}
           handlePageChange={this.handlePageChange}
-          pagination_data={this.props.data}
+          handlePostFilter={this.handlePostFilter}
+          paginationData={this.props.data}
           currentPage={currentPage}
+          query={query}
         />
       </div>
     );

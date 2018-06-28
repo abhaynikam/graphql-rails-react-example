@@ -12,7 +12,7 @@ const R = require('ramda');
 class PaginatedPostList extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.offset !== this.props.offset) {
+    if(nextProps.offset !== this.props.offset || nextProps.query !== this.props.query) {
       this.props.data.refetch();
     }
   }
@@ -22,7 +22,7 @@ class PaginatedPostList extends Component {
     this.props.mutate({
       variables: { id: postId }
     }).then(() => {
-      this.props.pagination_data.refetch();
+      this.props.paginationData.refetch();
     }).then(() => {
       this.props.data.refetch();
     }).then(() => {
@@ -58,11 +58,10 @@ class PaginatedPostList extends Component {
 
   render() {
     const { loading, posts } = this.props.data,
-      pagination_data = this.props.pagination_data,
-      currentPage = this.props.currentPage;
+      { paginationData, currentPage, query } = this.props;
 
 
-    if(loading || pagination_data.loading) {
+    if(loading || paginationData.loading) {
       return(
         <div className="text-center">
           <MDSpinner singleColor="#03a9f4" />
@@ -70,10 +69,22 @@ class PaginatedPostList extends Component {
       );
     }
 
-    const pageCount = Math.ceil(pagination_data.metadata.total_count / this.props.limit);
+    const pageCount = Math.ceil(paginationData.metadata.total_count / this.props.limit);
 
     return(
       <div>
+
+        <div className="form-group">
+          <input
+            type="text"
+            name="query"
+            value={query}
+            className="form-control"
+            placeholder="Search by post title"
+            onChange={(event) => this.props.handlePostFilter(event.target.value) }
+          />
+        </div>
+
         <ul className="list-group margin-bottom-30">
           {this.renderPosts(posts)}
         </ul>
@@ -97,7 +108,7 @@ class PaginatedPostList extends Component {
 }
 
 const getOptionForFetchPaginatedPostList = (props) => {
-  return { variables: { limit: props.limit, offset: props.offset } };
+  return { variables: { limit: props.limit, offset: props.offset, query: props.query } };
 };
 
 

@@ -8,6 +8,7 @@ import { FETCH_POSTS } from "../queries";
 import { CREATE_POST } from "../mutations";
 import { showToastr } from "../../Shared/ToastMessage";
 import { NavLink } from "react-router-dom";
+import setFieldData from "final-form-set-field-data";
 
 const R = require('ramda');
 
@@ -43,8 +44,15 @@ class NewPost extends Component {
         <Form
           onSubmit={this.onSubmit.bind(this)}
           initialValues={initialValues}
-          render={({ handleSubmit, pristine, invalid, submitting }) => (
-            <PostForm handleSubmit={handleSubmit} pristine={pristine} invalid={invalid} authorId={this.props.authorId} />
+          mutators={setFieldData}
+          render={({ handleSubmit, pristine, invalid, submitting, form }) => (
+            <PostForm
+              handleSubmit={handleSubmit}
+              pristine={pristine}
+              invalid={invalid}
+              authorId={this.props.authorId}
+              form={form}
+            />
           )}
         />
       </div>

@@ -19,9 +19,7 @@ Types::ContactType = GraphQL::ObjectType.define do
 
   field :flash_message, types.String do
 
-    resolve -> (obj, _args, _ctx) {
-      binding.pry
-    }
+    resolve -> (obj, _args, _ctx) {}
   end
 
 end

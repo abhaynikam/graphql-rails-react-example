@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { FETCH_POST } from "../queries";
 import MDSpinner from "react-md-spinner";
@@ -11,28 +10,6 @@ import { COMMENTS_SUBSCRIPTION } from "../subscription";
 const R = require('ramda');
 
 class PostDetails extends Component {
-
-  // componentWillMount() {
-  //   this.props.data.subscribeToMore({
-  //     document: COMMENTS_SUBSCRIPTION,
-  //     variables: {postId: this.props.match.params.id},
-  //     updateQuery: (previous, {subscriptionData}) => {
-  //       if (!subscriptionData.data) {
-  //         return previous;
-  //       }
-
-  //       const newComment = subscriptionData.data.commentAdded,
-  //         previousComments = previous.post.comments;
-
-  //       debugger
-  //       if (!R.find(R.propEq('id', newComment.id))(previousComments)) {
-  //         return Object.assign({}, previous, { post: { comments: [newComment, ...previousComments] } });
-  //       } else {
-  //         return previous;
-  //       }
-  //     }
-  //   });
-  // }
 
   render() {
     if(this.props.data.loading) {
@@ -68,6 +45,6 @@ class PostDetails extends Component {
 
 const getOptionForFetchPost = (props) => { return { variables: { id: props.match.params.id } } };
 
-export default graphql(FETCH_POST, {
-  options: getOptionForFetchPost
-})(PostDetails);
+export default graphql(
+  FETCH_POST, { options: getOptionForFetchPost}
+)(PostDetails);
