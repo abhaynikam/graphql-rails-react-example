@@ -13,6 +13,8 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :post_comments, function: Queries::Comments::PostComments.new
 
+  field :training_details, function: Queries::TrainingDetails.new
+
   field :user, Types::UserType do
     argument :id, types.ID
     description "GraphqlRailsReactExample user"

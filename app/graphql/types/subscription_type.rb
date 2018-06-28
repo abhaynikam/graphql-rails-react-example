@@ -10,7 +10,6 @@ Types::SubscriptionType = GraphQL::ObjectType.define do
     description "A comment was added to a blog post."
 
     resolve -> (_obj, args, _ctx) {
-      binding.pry
     }
   end
 end
